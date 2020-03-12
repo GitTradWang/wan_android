@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutterprojectsample/config/app_navigator.dart';
-import 'package:flutterprojectsample/constants/cache_constants_key.dart';
-import 'package:flutterprojectsample/model/user_model.dart';
-import 'package:flutterprojectsample/utils/preference_manager.dart';
+import 'package:wanandroidflutter/config/app_navigator.dart';
+import 'package:wanandroidflutter/constants/cache_constants_key.dart';
+import 'package:wanandroidflutter/model/user_model.dart';
+import 'package:wanandroidflutter/utils/preference_manager.dart';
 import 'package:provider/provider.dart';
 
 class AppModel extends ChangeNotifier {

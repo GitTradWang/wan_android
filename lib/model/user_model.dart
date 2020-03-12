@@ -1,10 +1,10 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutterprojectsample/config/app_navigator.dart';
-import 'package:flutterprojectsample/constants/cache_constants_key.dart';
-import 'package:flutterprojectsample/entity/user_info_entity.dart';
-import 'package:flutterprojectsample/utils/cache_manager.dart';
+import 'package:wanandroidflutter/config/app_navigator.dart';
+import 'package:wanandroidflutter/constants/cache_constants_key.dart';
+import 'package:wanandroidflutter/entity/user_info_entity.dart';
+import 'package:wanandroidflutter/utils/cache_manager.dart';
 import 'package:provider/provider.dart';
 
 class UserModel extends ChangeNotifier {

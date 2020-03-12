@@ -1,4 +1,4 @@
-import 'package:flutterprojectsample/entity/user_info_entity.dart';
+import 'package:wanandroidflutter/entity/user_info_entity.dart';
 
 userInfoEntityFromJson(UserInfoEntity data, Map<String, dynamic> json) {
 	if (json['userName'] != null) {

@@ -2,7 +2,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterprojectsample/r.dart';
+import 'package:wanandroidflutter/r.dart';
 import 'package:shimmer/shimmer.dart';
 
 class PageLoadingWidget extends StatelessWidget {

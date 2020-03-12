@@ -1,8 +1,8 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterprojectsample/page/home/home_page.dart';
-import 'package:flutterprojectsample/page/splash_page.dart';
-import 'package:flutterprojectsample/page/ui_sample_page.dart';
+import 'package:wanandroidflutter/page/home/home_page.dart';
+import 'package:wanandroidflutter/page/splash_page.dart';
+import 'package:wanandroidflutter/page/ui_sample_page.dart';
 
 Handler notFoundHandler = Handler(handlerFunc: (BuildContext context, Map<String, List<String>> params) {
   return ErrorWidget.withDetails(

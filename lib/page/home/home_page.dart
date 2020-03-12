@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutterprojectsample/model/app_model.dart';
-import 'package:flutterprojectsample/page/home/friends/home_friends_page.dart';
-import 'package:flutterprojectsample/page/home/index/home_index_page.dart';
-import 'package:flutterprojectsample/page/home/mine/home_mine_page.dart';
-import 'package:flutterprojectsample/page/home/score/home_score_page.dart';
+import 'package:wanandroidflutter/model/app_model.dart';
+import 'package:wanandroidflutter/page/home/friends/home_friends_page.dart';
+import 'package:wanandroidflutter/page/home/index/home_index_page.dart';
+import 'package:wanandroidflutter/page/home/mine/home_mine_page.dart';
+import 'package:wanandroidflutter/page/home/score/home_score_page.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {

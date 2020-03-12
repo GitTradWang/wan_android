@@ -2,12 +2,11 @@ import 'dart:async';
 
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterprojectsample/config/app_navigator.dart';
-import 'package:flutterprojectsample/config/app_router.dart';
-import 'package:flutterprojectsample/model/app_model.dart';
-import 'package:flutterprojectsample/model/user_model.dart';
-import 'package:flutterprojectsample/utils/debug_log.dart';
-import 'package:flutterprojectsample/utils/screen_adapter.dart';
+import 'package:wanandroidflutter/config/app_navigator.dart';
+import 'package:wanandroidflutter/config/app_router.dart';
+import 'package:wanandroidflutter/model/app_model.dart';
+import 'package:wanandroidflutter/model/user_model.dart';
+import 'package:wanandroidflutter/utils/screen_adapter.dart';
 
 ///广告页面
 class SplashPage extends StatefulWidget {
@@ -46,10 +45,8 @@ class _SplashPageState extends State<SplashPage> {
 
   Future<void> prepareInitData() async {
     try {
-      print(DateTime.now().millisecond);
       await AppModel.instance.init();
       await UserModel.instance.init();
-      print(DateTime.now().millisecond);
     } on Error {} on Exception {}
   }
 
