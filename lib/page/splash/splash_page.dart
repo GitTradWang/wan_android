@@ -6,6 +6,8 @@ import 'package:wanandroidflutter/config/app_navigator.dart';
 import 'package:wanandroidflutter/config/app_router.dart';
 import 'package:wanandroidflutter/model/app_model.dart';
 import 'package:wanandroidflutter/model/user_model.dart';
+import 'package:wanandroidflutter/net/wan_android_api.dart';
+import 'package:wanandroidflutter/utils/debug_log.dart';
 import 'package:wanandroidflutter/utils/screen_adapter.dart';
 
 ///广告页面
@@ -15,7 +17,6 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
-
   static const _TIME_PASS = 3;
 
   Timer _timer;
@@ -45,9 +46,14 @@ class _SplashPageState extends State<SplashPage> {
 
   Future<void> prepareInitData() async {
     try {
+      await WanAndroidApi.init();
       await AppModel.instance.init();
       await UserModel.instance.init();
-    } on Error {} on Exception {}
+    } on Error catch (e) {
+      log(e, tag: '初始化失败');
+    } on Exception catch (e) {
+      log(e, tag: '初始化失败');
+    }
   }
 
   @override

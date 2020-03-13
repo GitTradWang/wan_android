@@ -18,7 +18,7 @@ class UserModel extends ChangeNotifier {
   }
 
   Future<void> init() async {
-    String userInfoStr = await CacheManager.instance.getCache(CacheKey.USER_INFO);
+    String userInfoStr = await CacheManager.instance.getCache(CacheKey.USER_INFO)??'{}';
     _userInfoEntity = UserInfoEntity().fromJson(jsonDecode(userInfoStr));
   }
 

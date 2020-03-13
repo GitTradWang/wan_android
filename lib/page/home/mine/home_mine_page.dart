@@ -10,10 +10,6 @@ class _HomeMinePageState extends State<HomeMinePage> with AutomaticKeepAliveClie
   Widget build(BuildContext context) {
     super.build(context);
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text('我的'),
-      ),
       body: Center(
         child: Text('我的'),
       ),

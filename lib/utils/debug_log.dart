@@ -5,7 +5,7 @@ import 'dart:developer' as developer;
 ///是否在生产环境中
 bool inProduction = const bool.fromEnvironment("dart.vm.product");
 
-debug(Object msg, {String tag = 'DEMO', Object error, StackTrace stackTrace, Zone zone = Zone.root, jsonFormat = false}) {
+log(Object msg, {String tag = 'DEMO', Object error, StackTrace stackTrace, Zone zone = Zone.root, jsonFormat = false}) {
   if (!inProduction) {
     String message;
     if (jsonFormat) {

@@ -7,7 +7,7 @@ import 'package:wanandroidflutter/config/app_router.dart';
 import 'package:wanandroidflutter/config/app_theme.dart';
 import 'package:wanandroidflutter/model/app_model.dart';
 import 'package:wanandroidflutter/model/user_model.dart';
-import 'package:wanandroidflutter/page/splash_page.dart';
+import 'package:wanandroidflutter/page/splash/splash_page.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 

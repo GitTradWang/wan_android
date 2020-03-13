@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-Future<bool> showToast({
+void showToast({
   @required String message,
   Toast toastLength,
   int timeInSecForIos = 1,
@@ -10,7 +10,7 @@ Future<bool> showToast({
   Color backgroundColor,
   Color textColor,
 }) {
-  return Fluttertoast.showToast(
+  Fluttertoast.showToast(
     msg: message,
     toastLength: toastLength,
     timeInSecForIos: timeInSecForIos,

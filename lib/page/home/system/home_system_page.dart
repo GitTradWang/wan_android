@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
-class HomeScorePage extends StatefulWidget {
+class HomeSystemPage extends StatefulWidget {
   @override
-  _HomeScorePageState createState() => _HomeScorePageState();
+  _HomeSystemPageState createState() => _HomeSystemPageState();
 }
 
-class _HomeScorePageState extends State<HomeScorePage> with AutomaticKeepAliveClientMixin {
+class _HomeSystemPageState extends State<HomeSystemPage> with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
     super.build(context);
     return Container(
       child: Center(
-        child: Text('分数'),
+        child: Text('体系'),
       ),
     );
   }

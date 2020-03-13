@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:wanandroidflutter/model/app_model.dart';
-import 'package:wanandroidflutter/page/home/friends/home_friends_page.dart';
+import 'package:wanandroidflutter/page/home/ground/home_ground_page.dart';
 import 'package:wanandroidflutter/page/home/index/home_index_page.dart';
 import 'package:wanandroidflutter/page/home/mine/home_mine_page.dart';
-import 'package:wanandroidflutter/page/home/score/home_score_page.dart';
-import 'package:provider/provider.dart';
+import 'package:wanandroidflutter/page/home/question/home_question_page.dart';
+import 'package:wanandroidflutter/page/home/system/home_system_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -13,8 +12,9 @@ class HomePage extends StatefulWidget {
 
 const _bottomNavigationItem = const [
   BottomNavigationBarItem(title: Text('首页'), icon: Icon(Icons.home)),
-  BottomNavigationBarItem(title: Text('分数'), icon: Icon(Icons.score)),
-  BottomNavigationBarItem(title: Text('好友'), icon: Icon(Icons.supervisor_account)),
+  BottomNavigationBarItem(title: Text('体系'), icon: Icon(Icons.settings_system_daydream)),
+  BottomNavigationBarItem(title: Text('广场'), icon: Icon(Icons.supervisor_account)),
+  BottomNavigationBarItem(title: Text('问答'), icon: Icon(Icons.restore_page)),
   BottomNavigationBarItem(title: Text('我的'), icon: Icon(Icons.assignment_ind)),
 ];
 
@@ -27,8 +27,9 @@ class _HomePageState extends State<HomePage> {
 
   List<Widget> _pageViews = [
     HomeIndexPage(),
-    HomeScorePage(),
-    HomeFriendsPage(),
+    HomeSystemPage(),
+    HomeGroundPage(),
+    HomeQuestionPage(),
     HomeMinePage(),
   ];
 
@@ -36,7 +37,6 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     _pageController = PageController(initialPage: _currentIndex, keepPage: true);
-
 
   }
 

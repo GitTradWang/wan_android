@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class HomeFriendsPage extends StatefulWidget {
+class HomeGroundPage extends StatefulWidget {
   @override
-  _HomeFriendsPageState createState() => _HomeFriendsPageState();
+  _HomeGroundPageState createState() => _HomeGroundPageState();
 }
 
-class _HomeFriendsPageState extends State<HomeFriendsPage> with AutomaticKeepAliveClientMixin {
+class _HomeGroundPageState extends State<HomeGroundPage> with AutomaticKeepAliveClientMixin {
   @override
   void initState() {
     super.initState();
@@ -16,7 +16,7 @@ class _HomeFriendsPageState extends State<HomeFriendsPage> with AutomaticKeepAli
     super.build(context);
     return Scaffold(
       body: Center(
-        child: Text('好友'),
+        child: Text('广场'),
       ),
     );
   }
