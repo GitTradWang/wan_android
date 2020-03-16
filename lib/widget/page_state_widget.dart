@@ -120,6 +120,7 @@ class PageEmptyWidget extends StatelessWidget {
                 Image.asset(
                   imageAssert,
                   height: imageHeight,
+                  fit: BoxFit.cover,
                 ),
                 SizedBox(
                   height: textOffset,

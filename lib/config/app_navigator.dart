@@ -11,7 +11,9 @@ class AppNavigator {
   static final _AppNavigatorObserverManager _navigatorObserver = _AppNavigatorObserverManager();
 
   static Router get router => _router;
+
   static GlobalKey<NavigatorState> get navigatorKey => _navigatorKey;
+
   static _AppNavigatorObserverManager get appNavigatorManager => _navigatorObserver;
 
   ///跳转页面 [routerName] 路由名 [arguments] 参数 [replace] 是否替换当前页面 [clearStack] 是否清除路由栈 [transition] 页面切换样式 [transitionDuration] 时间 [transitionBuilder] 自定义切换样式
@@ -36,6 +38,10 @@ class AppNavigator {
       transitionDuration: transitionDuration,
       transitionBuilder: transitionBuilder,
     );
+  }
+
+  static void pop(BuildContext context, [dynamic result]) {
+    Navigator.pop(context, result);
   }
 
   ///不使用context跳转页面（这种跳转因为使用Navigator的context，所以在RouteHandler中的context不是跳转的context）
@@ -80,6 +86,12 @@ class AppNavigator {
       }
     }
     return future;
+  }
+
+  static void popWithoutContext([dynamic result]) {
+    if (navigatorKey.currentState.canPop()) {
+      navigatorKey.currentState.pop(result);
+    }
   }
 
   /// 拼接参数符合fluro命名规则 [routerName] 路由名称 [arguments] 参数

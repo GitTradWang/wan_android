@@ -1,22 +1,19 @@
 import 'dart:io';
-
-import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:wanandroidflutter/utils/net/net_exception.dart';
 
 class Net {
   static Net _instance;
 
   Dio _dio;
 
-  String _cookieCachePath;
-
   Net._();
 
   static Net get instance => _instance ?? (_instance = Net._());
 
+  Dio get dio => _dio;
+
   Future<void> init({String baseUrl}) async {
-    _cookieCachePath = '${(await getApplicationDocumentsDirectory()).path}/cookie/';
     BaseOptions _options = BaseOptions(
       baseUrl: baseUrl,
       connectTimeout: 3000,
@@ -25,7 +22,6 @@ class Net {
       contentType: ContentType.json,
     );
     _dio = Dio(_options);
-    _dio.interceptors.add(CookieManager(PersistCookieJar(dir: _cookieCachePath)));
     _dio.interceptors.add(LogInterceptor());
   }
 
@@ -45,9 +41,9 @@ class Net {
         onReceiveProgress: onReceiveProgress,
       ));
     } on DioError catch (e) {
-      throw Exception(_formatError(e));
+      throw NetException(_formatError(e));
     } on Exception {
-      throw Exception('网络错误，请稍后再试');
+      throw NetException('网络错误，请稍后再试');
     }
   }
 
@@ -71,9 +67,9 @@ class Net {
         onReceiveProgress: onReceiveProgress,
       ));
     } on DioError catch (e) {
-      throw Exception(_formatError(e));
+      throw NetException(_formatError(e));
     } on Exception {
-      throw Exception('网络错误，请稍后再试');
+      throw NetException('网络错误，请稍后再试');
     }
   }
 
@@ -97,9 +93,9 @@ class Net {
         onReceiveProgress: onReceiveProgress,
       ));
     } on DioError catch (e) {
-      throw Exception(_formatError(e));
+      throw NetException(_formatError(e));
     } on Exception {
-      throw Exception('网络错误，请稍后再试');
+      throw NetException('网络错误，请稍后再试');
     }
   }
 
@@ -107,7 +103,7 @@ class Net {
     if (_isSuccess(response)) {
       return response.data;
     } else {
-      throw Exception(_parseNetStatusCode(response));
+      throw NetException(_parseNetStatusCode(response));
     }
   }
 

@@ -10,6 +10,9 @@ void showToast({
   Color backgroundColor,
   Color textColor,
 }) {
+  if (message == null || message.length == 0) {
+    return;
+  }
   Fluttertoast.showToast(
     msg: message,
     toastLength: toastLength,

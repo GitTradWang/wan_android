@@ -6,6 +6,7 @@ class RouterName {
   static const indexPage = '/';
   static const homePage = '/homePage';
   static const loginPage = '/loginPage';
+  static const registerPage = '/registerPage';
   static const uiSamplePage = '/uiSamplePage';
 }
 

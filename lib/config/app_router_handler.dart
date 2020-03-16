@@ -2,13 +2,12 @@ import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:wanandroidflutter/page/home/home_page.dart';
 import 'package:wanandroidflutter/page/login/login_page.dart';
+import 'package:wanandroidflutter/page/not_found_page.dart';
 import 'package:wanandroidflutter/page/splash/splash_page.dart';
 import 'package:wanandroidflutter/page/ui_sample_page.dart';
 
 Handler notFoundHandler = Handler(handlerFunc: (BuildContext context, Map<String, List<String>> params) {
-  return ErrorWidget.withDetails(
-    message: 'ROUTE WAS NOT FOUND !!!',
-  );
+  return NotFoundPage();
 });
 
 Handler indexPageHandler = Handler(handlerFunc: (BuildContext context, Map<String, List<String>> parameters) {
