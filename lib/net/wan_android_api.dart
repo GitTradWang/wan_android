@@ -11,8 +11,9 @@ class WanAndroidApi {
   static WanAndroidCookieManager _androidCookieManager;
 
   static Future<void> init() async {
-    _androidCookieManager = WanAndroidCookieManager(PersistCookieJar(dir: '${(await getApplicationDocumentsDirectory()).path}/cookie/'));
     await Net.instance.init(baseUrl: URL_BASE);
+    _androidCookieManager = WanAndroidCookieManager(PersistCookieJar(dir: '${(await getApplicationDocumentsDirectory()).path}/cookie/'));
+    Net.instance.dio.interceptors.add(_androidCookieManager);
   }
 
   static bool get isAuth {
