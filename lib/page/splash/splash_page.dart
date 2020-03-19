@@ -2,11 +2,9 @@ import 'dart:async';
 
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
+import 'package:wanandroidflutter/application.dart';
 import 'package:wanandroidflutter/config/app_navigator.dart';
 import 'package:wanandroidflutter/config/app_router.dart';
-import 'package:wanandroidflutter/model/app_model.dart';
-import 'package:wanandroidflutter/model/user_model.dart';
-import 'package:wanandroidflutter/net/wan_android_api.dart';
 import 'package:wanandroidflutter/utils/debug_log.dart';
 import 'package:wanandroidflutter/utils/screen_adapter.dart';
 
@@ -46,9 +44,7 @@ class _SplashPageState extends State<SplashPage> {
 
   Future<void> prepareInitData() async {
     try {
-      await WanAndroidApi.init();
-      await AppModel.instance.init();
-      await UserModel.instance.init();
+      Application.init();
     } on Error catch (e) {
       log(e, tag: '初始化失败');
     } on Exception catch (e) {

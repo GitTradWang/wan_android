@@ -7,16 +7,18 @@ import 'package:wanandroidflutter/utils/screen_adapter.dart';
 import 'package:wanandroidflutter/utils/toast.dart';
 import 'package:wanandroidflutter/widget/loading_dialog.dart';
 
-class LoginPage extends StatefulWidget {
+class RegisterPage extends StatefulWidget {
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _RegisterPageState createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
   TextEditingController _usernameTextController = TextEditingController();
   TextEditingController _passwordTextController = TextEditingController();
 
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  bool agreement = true;
 
   @override
   void initState() {
@@ -28,21 +30,8 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: Text('登录'),
+        title: Text('注册'),
         centerTitle: true,
-        actions: <Widget>[
-          InkWell(
-            onTap: () {
-              AppNavigator.navigateTo(context, RouterName.registerPage);
-            },
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              child: Center(
-                child: Text('注册'),
-              ),
-            ),
-          )
-        ],
       ),
       body: Container(
         width: Screen.screenWidth,
@@ -124,6 +113,24 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
             ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: aWidth(30)),
+              child: Row(
+                children: <Widget>[
+                  Checkbox(
+                      value: agreement,
+                      onChanged: (value) {
+                        setState(() {
+                          agreement = value;
+                        });
+                      }),
+                  Text(
+                    '我同意该用户协议',
+                    style: Theme.of(context).textTheme.copyWith(caption: TextStyle(color: Theme.of(context).primaryColor)).caption,
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
@@ -131,18 +138,25 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void _submit() {
+
+    Navigator.of(context).popUntil(ModalRoute.withName(RouterName.homePage));
+    return;
+
     if (_formKey.currentState.validate()) {
       FocusScope.of(context).requestFocus(FocusNode());
+      if (!agreement) {
+        showToast(message: '请同意用户协议');
+        return;
+      }
 
       LoadingDialog.show(context);
-      UserModel.instance.login(_usernameTextController.text, _passwordTextController.text).then((data) {
-        showToast(message: '登录成功');
-        AppNavigator.pop();
+      UserModel.instance.register(_usernameTextController.text, _passwordTextController.text).then((data) {
+        showToast(message: '注册成功');
         LoadingDialog.dismiss(context);
-        AppNavigator.pop();
+        AppNavigator.popUntil(ModalRoute.withName(RouterName.homePage));
       }).catchError((error) {
-        LoadingDialog.dismiss(context);
         showToast(message: error.toString());
+        LoadingDialog.dismiss(context);
       });
     } else {
       showToast(message: '请输入正确的用户名和密码');

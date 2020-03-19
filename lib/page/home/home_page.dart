@@ -19,8 +19,6 @@ const _bottomNavigationItem = const [
 ];
 
 class _HomePageState extends State<HomePage> {
-  bool loading = true;
-
   PageController _pageController;
 
   int _currentIndex = 0;
@@ -37,7 +35,6 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     _pageController = PageController(initialPage: _currentIndex, keepPage: true);
-
   }
 
   @override

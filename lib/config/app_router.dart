@@ -5,9 +5,9 @@ import 'app_router_handler.dart';
 class RouterName {
   static const indexPage = '/';
   static const homePage = '/homePage';
+  static const uiSamplePage = '/uiSamplePage';
   static const loginPage = '/loginPage';
   static const registerPage = '/registerPage';
-  static const uiSamplePage = '/uiSamplePage';
 }
 
 void defineRoutes(Router router) {
@@ -16,4 +16,5 @@ void defineRoutes(Router router) {
   router.define(RouterName.homePage, handler: homePageHandler);
   router.define(RouterName.uiSamplePage, handler: uiSamplePageHandler);
   router.define(RouterName.loginPage, handler: loginPageHandler);
+  router.define(RouterName.registerPage, handler: registerPageHandler);
 }

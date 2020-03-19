@@ -16,7 +16,7 @@ class WanAndroidApi {
     Net.instance.dio.interceptors.add(_androidCookieManager);
   }
 
-  static bool get isAuth {
+  static bool isAuth() {
     return _androidCookieManager.isAuth();
   }
 
