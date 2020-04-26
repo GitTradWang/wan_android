@@ -44,7 +44,7 @@ class UserModel extends ChangeNotifier {
   Future<UserInfoEntity> login(String username, String password) async {
     var entity = await WanAndroidApi.postFrom<UserInfoEntity>(
       URL_LOGIN,
-      data: FormData.from({
+      data: FormData.fromMap({
         'username': username,
         'password': password,
       }),
@@ -56,7 +56,7 @@ class UserModel extends ChangeNotifier {
   Future<UserInfoEntity> register(String username, String password) async {
     var entity = await WanAndroidApi.postFrom<UserInfoEntity>(
       URL_REGISTER,
-      data: FormData.from({
+      data: FormData.fromMap({
         'username': username,
         'password': password,
         'repassword': password,

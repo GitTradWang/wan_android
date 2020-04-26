@@ -3,7 +3,6 @@ import 'package:wanandroidflutter/config/app_navigator.dart';
 import 'package:wanandroidflutter/config/app_router.dart';
 import 'package:wanandroidflutter/model/user_model.dart';
 import 'package:wanandroidflutter/r.dart';
-import 'package:wanandroidflutter/utils/screen_adapter.dart';
 import 'package:wanandroidflutter/utils/toast.dart';
 import 'package:wanandroidflutter/widget/loading_dialog.dart';
 
@@ -34,20 +33,19 @@ class _RegisterPageState extends State<RegisterPage> {
         centerTitle: true,
       ),
       body: Container(
-        width: Screen.screenWidth,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Padding(
               padding: EdgeInsets.only(
-                top: aHeight(60),
-                bottom: aHeight(40),
+                top: 60,
+                bottom: 40,
               ),
               child: Image.asset(
                 Img.LAUNCH_IMAGE,
-                width: aHeight(150),
-                height: aHeight(150),
+                width: 100,
+                height: 100,
                 fit: BoxFit.cover,
               ),
             ),
@@ -57,13 +55,12 @@ class _RegisterPageState extends State<RegisterPage> {
               child: Column(
                 children: <Widget>[
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: aWidth(40)),
+                    padding: EdgeInsets.symmetric(horizontal: 40),
                     child: TextFormField(
                       controller: _usernameTextController,
                       decoration: const InputDecoration(
                         hintText: '请输入用户名',
                         labelText: '用户名',
-                        icon: Icon(Icons.person),
                         border: OutlineInputBorder(),
                       ),
                       validator: (String value) {
@@ -74,16 +71,15 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ),
                   SizedBox(
-                    height: aHeight(20),
+                    height: 20,
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: aWidth(40)),
+                    padding: EdgeInsets.symmetric(horizontal: 40),
                     child: TextFormField(
                       controller: _passwordTextController,
                       decoration: const InputDecoration(
                         hintText: '请输入密码',
                         labelText: '密码',
-                        icon: Icon(Icons.sentiment_satisfied),
                         border: OutlineInputBorder(),
                       ),
                       validator: (String value) {
@@ -98,8 +94,8 @@ class _RegisterPageState extends State<RegisterPage> {
             ),
             Padding(
               padding: EdgeInsets.symmetric(
-                horizontal: aWidth(40),
-                vertical: aHeight(20),
+                horizontal: 40,
+                vertical: 20,
               ),
               child: RaisedButton(
                 onPressed: () {
@@ -114,7 +110,7 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: aWidth(30)),
+              padding: EdgeInsets.symmetric(horizontal: 30),
               child: Row(
                 children: <Widget>[
                   Checkbox(

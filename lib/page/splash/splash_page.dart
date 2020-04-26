@@ -6,7 +6,6 @@ import 'package:wanandroidflutter/application.dart';
 import 'package:wanandroidflutter/config/app_navigator.dart';
 import 'package:wanandroidflutter/config/app_router.dart';
 import 'package:wanandroidflutter/utils/debug_log.dart';
-import 'package:wanandroidflutter/utils/screen_adapter.dart';
 
 ///广告页面
 class SplashPage extends StatefulWidget {
@@ -33,12 +32,14 @@ class _SplashPageState extends State<SplashPage> {
           });
           if (time < 1) {
             timer.cancel();
-            AppNavigator.navigateTo(context, RouterName.homePage, transition: TransitionType.fadeIn, replace: true);
+            AppNavigator.navigateTo(context, RouterName.homePage,
+                transition: TransitionType.fadeIn, replace: true);
           }
         });
       });
     }).catchError((error) {
-      AppNavigator.navigateTo(context, RouterName.homePage, transition: TransitionType.fadeIn, replace: true);
+      AppNavigator.navigateTo(context, RouterName.homePage,
+          transition: TransitionType.fadeIn, replace: true);
     });
   }
 
@@ -60,7 +61,6 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
-    Screen.initScreenAdapter(context);
     return Scaffold(
       body: Container(
         color: Theme.of(context).primaryColor,
@@ -69,15 +69,21 @@ class _SplashPageState extends State<SplashPage> {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.only(top: Screen.statusBarHeight + aWidth(40), right: aWidth(40)),
+              padding: EdgeInsets.only(
+                  top: MediaQuery.of(context).padding.top + 15, right: 15),
               child: InkWell(
-                onTap: () => AppNavigator.navigateTo(context, RouterName.homePage, transition: TransitionType.fadeIn, replace: true),
+                onTap: () => AppNavigator.navigateTo(
+                  context,
+                  RouterName.homePage,
+                  transition: TransitionType.fadeIn,
+                  replace: true,
+                ),
                 child: Container(
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(aWidth(40))),
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
                     color: Theme.of(context).disabledColor,
                   ),
-                  padding: EdgeInsets.symmetric(vertical: aWidth(10), horizontal: aWidth(30)),
+                  padding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
                   child: Text(
                     '跳过  $time 秒',
                     style: TextStyle(color: Colors.white),
