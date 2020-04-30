@@ -68,7 +68,7 @@ class PageLoadingListWidget extends StatelessWidget {
   PageLoadingListWidget({
     @required this.builder,
     this.length: 7,
-    this.padding = const EdgeInsets.all(7),
+    this.padding = const EdgeInsets.all(0),
   });
 
   @override

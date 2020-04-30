@@ -122,7 +122,12 @@ class _RegisterPageState extends State<RegisterPage> {
                       }),
                   Text(
                     '我同意该用户协议',
-                    style: Theme.of(context).textTheme.copyWith(caption: TextStyle(color: Theme.of(context).primaryColor)).caption,
+                    style: Theme.of(context)
+                        .textTheme
+                        .copyWith(
+                            caption: TextStyle(
+                                color: Theme.of(context).primaryColor))
+                        .caption,
                   ),
                 ],
               ),
@@ -134,10 +139,6 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   void _submit() {
-
-    Navigator.of(context).popUntil(ModalRoute.withName(RouterName.homePage));
-    return;
-
     if (_formKey.currentState.validate()) {
       FocusScope.of(context).requestFocus(FocusNode());
       if (!agreement) {
@@ -146,7 +147,9 @@ class _RegisterPageState extends State<RegisterPage> {
       }
 
       LoadingDialog.show(context);
-      UserModel.instance.register(_usernameTextController.text, _passwordTextController.text).then((data) {
+      UserModel.instance
+          .register(_usernameTextController.text, _passwordTextController.text)
+          .then((data) {
         showToast(message: '注册成功');
         LoadingDialog.dismiss(context);
         AppNavigator.popUntil(ModalRoute.withName(RouterName.homePage));

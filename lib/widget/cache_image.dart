@@ -9,20 +9,20 @@ class CacheImage extends StatelessWidget {
   final double width;
   final double height;
   final BoxFit fit;
-  final num radius;
+  final BorderRadius borderRadius;
 
   CacheImage({
     @required this.url,
     this.width,
     this.height,
     this.fit,
-    this.radius = 5,
+    this.borderRadius = const BorderRadius.all(Radius.circular(5)),
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(radius)),
+    return ClipRRect(
+      borderRadius: borderRadius,
       child: CachedNetworkImage(
         fit: fit,
         imageUrl: url ?? '',

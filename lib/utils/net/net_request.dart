@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:wanandroidflutter/utils/net/net_exception.dart';
 
@@ -21,7 +20,7 @@ class Net {
       responseType: ResponseType.json,
     );
     _dio = Dio(_options);
-    _dio.interceptors.add(LogInterceptor());
+    _dio.interceptors.add(LogInterceptor(request: false,requestBody: true,requestHeader: false,responseHeader: true,responseBody: true));
   }
 
   Future<Map<String, dynamic>> get(

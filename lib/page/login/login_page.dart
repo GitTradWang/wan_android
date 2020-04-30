@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:wanandroidflutter/config/app_navigator.dart';
 import 'package:wanandroidflutter/config/app_router.dart';
@@ -16,6 +19,8 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController _passwordTextController = TextEditingController();
 
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  CancelToken _cancelToken = CancelToken();
 
   @override
   void initState() {
@@ -126,16 +131,21 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+    _cancelToken.cancel();
+  }
+
   void _submit() {
     if (_formKey.currentState.validate()) {
       FocusScope.of(context).requestFocus(FocusNode());
-
       LoadingDialog.show(context);
       UserModel.instance
-          .login(_usernameTextController.text, _passwordTextController.text)
+          .login(_usernameTextController.text, _passwordTextController.text,
+              cancelToken: _cancelToken)
           .then((data) {
         showToast(message: '登录成功');
-        AppNavigator.pop();
         LoadingDialog.dismiss(context);
         AppNavigator.pop();
       }).catchError((error) {

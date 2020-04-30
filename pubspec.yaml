@@ -29,7 +29,9 @@ dependencies:
   #链接跳转
   url_launcher: ^5.4.5
   #状态管理
-  provider: ^4.0.5
+  provider: ^4.0.5+1
+  #轮播图
+  flutter_swiper: ^1.1.6
   #数据库
   sqflite: ^1.3.0
   #吐司
@@ -69,6 +71,9 @@ dev_dependencies:
 
   test: ^1.9.4
 
+  #通过yaml配置启动图标
+  flutter_launcher_icons: ^0.7.5
+
 flutter:
 
   uses-material-design: true
@@ -83,3 +88,7 @@ flutter:
     # assets end
     #以上是生成R文件的注释请不要删除
 
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "res/img/launch_image.png"

@@ -33,7 +33,7 @@ class UserModel extends ChangeNotifier {
     return true;
   }
 
-  Future<bool> logout() async {
+  Future<bool> logout({CancelToken cancelToken}) async {
     await WanAndroidApi.get(URL_LOGOUT);
     await CacheManager.instance.delete(CacheKey.USER_INFO);
     _userInfoEntity = null;
@@ -41,19 +41,20 @@ class UserModel extends ChangeNotifier {
     return true;
   }
 
-  Future<UserInfoEntity> login(String username, String password) async {
+  Future<UserInfoEntity> login(String username, String password,{CancelToken cancelToken}) async {
     var entity = await WanAndroidApi.postFrom<UserInfoEntity>(
       URL_LOGIN,
       data: FormData.fromMap({
         'username': username,
         'password': password,
       }),
+      cancelToken: cancelToken
     );
     await updateUserInfo(entity.data);
     return entity.data;
   }
 
-  Future<UserInfoEntity> register(String username, String password) async {
+  Future<UserInfoEntity> register(String username, String password,{CancelToken cancelToken}) async {
     var entity = await WanAndroidApi.postFrom<UserInfoEntity>(
       URL_REGISTER,
       data: FormData.fromMap({
@@ -61,6 +62,7 @@ class UserModel extends ChangeNotifier {
         'password': password,
         'repassword': password,
       }),
+      cancelToken: cancelToken
     );
 
     await updateUserInfo(entity.data);
