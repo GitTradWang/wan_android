@@ -7,7 +7,7 @@ class HomeIndexArticleItemWidget extends StatelessWidget {
 
   final HomeIndexArticleListData data;
 
-  HomeIndexArticleItemWidget({this.index, this.data});
+  HomeIndexArticleItemWidget({this.index, this.data,bool isTpop = false});
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +37,7 @@ class HomeIndexArticleItemWidget extends StatelessWidget {
                    padding: const EdgeInsets.only(top: 8.0),
                    child: Row(
                      children: <Widget>[
+                       Text(data.top==true? '置顶   ':'')
                      ]..addAll(getAuth(context)),
                    ),
                  )
@@ -51,8 +52,8 @@ class HomeIndexArticleItemWidget extends StatelessWidget {
 
   Icon getFirviteStateIcon(BuildContext context) {
     return data.collect == true
-        ? Icon(Icons.sentiment_very_satisfied, color: Theme.of(context).primaryColor)
-        : Icon(Icons.sentiment_dissatisfied);
+        ? Icon(Icons.favorite, color: Theme.of(context).primaryColor)
+        : Icon(Icons.favorite_border);
   }
 
   List<Widget> getAuth(BuildContext context){

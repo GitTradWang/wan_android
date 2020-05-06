@@ -1,42 +1,58 @@
 import 'package:wanandroidflutter/entity/base_entity.dart';
 import 'package:wanandroidflutter/entity/home_index_article_list_entity.dart';
 import 'package:wanandroidflutter/net/wan_android_api.dart';
-import 'package:wanandroidflutter/widget/provider/base_page_widget.dart';
+import 'package:wanandroidflutter/widget/provider/provider_state_widget.dart';
 
-class HomeIndexPageListModel extends BaseProviderPageModel {
+class HomeIndexPageListModel extends ProviderStatePageModel {
   HomeIndexPageListModel() : super(state: ProviderWidgetState.LOADING);
 
   int currentPage = 0;
 
   bool noMoreData = false;
 
-  List<HomeIndexArticleListData> datas = [];
+  List<HomeIndexArticleListData> articleList = [];
 
   Future<void> getArticleListData({bool first}) async {
-    BaseEntity<HomeIndexArticleListEntity> entity = await WanAndroidApi.get<HomeIndexArticleListEntity>('article/list/$currentPage/json');
+    articleList.clear();
+    await _getTopArticlList();
+    BaseEntity<HomeIndexArticleListEntity> entity =
+    await WanAndroidApi.get<HomeIndexArticleListEntity>('article/list/$currentPage/json');
     currentPage = entity.data.curPage;
-    noMoreData = entity.data.curPage >= entity.data.pageCount && entity.data.over;
-    datas = entity.data.datas;
-    if(first==true){
+    noMoreData =
+        entity.data.curPage >= entity.data.pageCount && entity.data.over;
+    articleList.addAll(entity.data.datas);
+    if (first == true) {
       showContent();
-    }else{
+    } else {
       notifyListeners();
     }
   }
 
   Future<void> loadMore() async {
     currentPage++;
-    BaseEntity<HomeIndexArticleListEntity> entity = await WanAndroidApi.get<HomeIndexArticleListEntity>('article/list/$currentPage/json');
+    BaseEntity<HomeIndexArticleListEntity> entity =
+    await WanAndroidApi.get<HomeIndexArticleListEntity>('article/list/$currentPage/json');
     currentPage = entity.data.curPage;
     noMoreData = entity.data.curPage >= entity.data.pageCount && entity.data.over;
-    datas.addAll(entity.data.datas);
+    articleList.addAll(entity.data.datas);
     notifyListeners();
     return;
   }
 
   Future<void> refresh() async {
-    currentPage=0;
+    currentPage = 0;
+    articleList.clear();
+    await _getTopArticlList();
     await getArticleListData(first: false);
     return;
+  }
+
+  Future<void> _getTopArticlList() async {
+    BaseEntity<List<HomeIndexArticleListData>> entity = await WanAndroidApi.get<List<HomeIndexArticleListData>>('article/top/json');
+    var data = entity.data.map((data) {
+      data.top = true;
+      return data;
+    });
+    articleList.addAll(data);
   }
 }

@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:wanandroidflutter/widget/page_state_widget.dart';
 
-typedef ChildBuilder<T extends BaseProviderModel> = Widget Function(
+typedef ChildBuilder<T extends ProviderStateModel> = Widget Function(
     BuildContext context, T t);
 
-typedef ErrorBuilder<T extends BaseProviderModel> = Widget Function(
+typedef ErrorBuilder<T extends ProviderStateModel> = Widget Function(
     BuildContext context, T t);
 
-typedef EmptyBuilder<T extends BaseProviderModel> = Widget Function(
+typedef EmptyBuilder<T extends ProviderStateModel> = Widget Function(
     BuildContext context, T t);
 
-typedef LoadingBuilder<T extends BaseProviderModel> = Widget Function(
+typedef LoadingBuilder<T extends ProviderStateModel> = Widget Function(
     BuildContext context, T t);
 
-class BaseProviderWidget<T extends BaseProviderModel> extends StatelessWidget {
+class ProviderStateWidget<T extends ProviderStateModel> extends StatelessWidget {
   final Widget child;
 
   final Create<T> create;
@@ -25,7 +25,7 @@ class BaseProviderWidget<T extends BaseProviderModel> extends StatelessWidget {
 
   final LoadingBuilder<T> loadingBuilder;
 
-  BaseProviderWidget({
+  ProviderStateWidget({
     @required this.child,
     @required this.create,
     @required this.errorBuilder,
@@ -67,15 +67,15 @@ class BaseProviderWidget<T extends BaseProviderModel> extends StatelessWidget {
   }
 }
 
-class BaseProviderModel extends ChangeNotifier {
+class ProviderStateModel extends ChangeNotifier {
   ProviderWidgetState _widgetState;
 
-  BaseProviderModel({ProviderWidgetState state})
-      : _widgetState = state == null ? ProviderWidgetState.CONTENT : state;
+  ProviderStateModel({ProviderWidgetState state}) : _widgetState = state == null ? ProviderWidgetState.CONTENT : state;
 
   ProviderWidgetState get widgetState => _widgetState;
 
   set widgetState(ProviderWidgetState state) {
+    if (state == _widgetState) return;
     _widgetState = state;
     notifyListeners();
   }
@@ -88,14 +88,14 @@ enum ProviderWidgetState {
   ERROR,
 }
 
-class BaseProviderPageModel extends BaseProviderModel {
+class ProviderStatePageModel extends ProviderStateModel {
   String errorMessge = '';
   String emptyMessage = '';
   String loadingMessage = '';
 
-  void Function(BaseProviderPageModel model) errorCallback;
+  void Function(ProviderStatePageModel model) errorCallback;
 
-  BaseProviderPageModel({ProviderWidgetState state}) : super(state: state);
+  ProviderStatePageModel({ProviderWidgetState state}) : super(state: state);
 
   void showLoading({String message}) {
     loadingMessage = message;
@@ -107,7 +107,7 @@ class BaseProviderPageModel extends BaseProviderModel {
   }
 
   void showError(
-      {String message, Function(BaseProviderPageModel model) callback}) {
+      {String message, Function(ProviderStatePageModel model) callback}) {
     errorMessge = message;
     errorCallback = callback;
     widgetState = ProviderWidgetState.ERROR;
@@ -119,7 +119,7 @@ class BaseProviderPageModel extends BaseProviderModel {
   }
 }
 
-class BaseProviderPageWidget<T extends BaseProviderPageModel>
+class ProviderStatePageWidget<T extends ProviderStatePageModel>
     extends StatelessWidget {
   final Widget child;
 
@@ -131,18 +131,17 @@ class BaseProviderPageWidget<T extends BaseProviderPageModel>
 
   final LoadingBuilder<T> loadingBuilder;
 
-
-  BaseProviderPageWidget({
+  ProviderStatePageWidget({
     @required this.create,
     this.child,
     this.errorBuilder,
     this.emptyBuilder,
     this.loadingBuilder,
-  }) ;
+  });
 
   @override
   Widget build(BuildContext context) {
-    return BaseProviderWidget<T>(
+    return ProviderStateWidget<T>(
       child: child,
       create: create,
       emptyBuilder: emptyBuilder ?? (context, T t) => PageEmptyWidget(text: t.emptyMessage),

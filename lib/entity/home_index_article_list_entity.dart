@@ -42,6 +42,7 @@ class HomeIndexArticleListData with JsonConvert<HomeIndexArticleListData> {
 	int userId;
 	int visible;
 	int zan;
+	bool top;
 }
 
 class HomeIndexArticleListDatasTag with JsonConvert<HomeIndexArticleListDatasTag> {

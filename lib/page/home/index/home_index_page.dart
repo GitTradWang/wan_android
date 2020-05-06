@@ -5,7 +5,7 @@ import 'package:wanandroidflutter/page/home/index/widget/home_index_article_item
 import 'package:wanandroidflutter/page/home/index/widget/home_index_page_banner.dart';
 import 'package:wanandroidflutter/page/home/index/home_index_page_model.dart';
 import 'package:wanandroidflutter/widget/page_state_widget.dart';
-import 'package:wanandroidflutter/widget/provider/base_page_widget.dart';
+import 'package:wanandroidflutter/widget/provider/provider_state_widget.dart';
 
 class HomeIndexPage extends StatefulWidget {
   @override
@@ -15,24 +15,25 @@ class HomeIndexPage extends StatefulWidget {
 class _HomeIndexPageState extends State<HomeIndexPage>
     with AutomaticKeepAliveClientMixin {
   HomeIndexPageListModel _homeIndexPageListModel = HomeIndexPageListModel();
-  HomeIndexPageBannerControler _bannerControler = HomeIndexPageBannerControler();
+  HomeIndexPageBannerControler _bannerControler =
+      HomeIndexPageBannerControler();
 
   @override
   void initState() {
     super.initState();
-    _homeIndexPageListModel.getArticleListData(first: true);
+    Future.sync(() async {
+      await _homeIndexPageListModel.getArticleListData(first: true);
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     super.build(context);
     return Scaffold(
-
       appBar: AppBar(
         title: Text('首页'),
         centerTitle: true,
       ),
-
       body: EasyRefresh.custom(
         topBouncing: true,
         bottomBouncing: false,
@@ -45,7 +46,7 @@ class _HomeIndexPageState extends State<HomeIndexPage>
           SliverToBoxAdapter(
             child: HomeIndexPageBanner(controler: _bannerControler),
           ),
-          BaseProviderPageWidget<HomeIndexPageListModel>(
+          ProviderStatePageWidget<HomeIndexPageListModel>(
             create: (BuildContext context) => _homeIndexPageListModel,
             errorBuilder: (context, model) => SliverToBoxAdapter(child: PageErrorWidget()),
             emptyBuilder: (context, model) => SliverToBoxAdapter(child: PageEmptyWidget()),
@@ -56,12 +57,10 @@ class _HomeIndexPageState extends State<HomeIndexPage>
               ),
             ),
             child: Consumer<HomeIndexPageListModel>(
-              builder: (BuildContext context, HomeIndexPageListModel value,
-                  Widget child) {
+              builder: (BuildContext context, HomeIndexPageListModel value, Widget child) {
                 return SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                        (BuildContext context, int index) => HomeIndexArticleItemWidget(index: index, data: value.datas[index]),
-                    childCount: _homeIndexPageListModel.datas.length,
+                  delegate: SliverChildBuilderDelegate((BuildContext context, int index) => HomeIndexArticleItemWidget(index: index, data: value.articleList[index]),
+                    childCount: _homeIndexPageListModel.articleList.length,
                   ),
                 );
               },
