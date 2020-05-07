@@ -10,8 +10,17 @@ class _HomeSystemPageState extends State<HomeSystemPage> with AutomaticKeepAlive
   Widget build(BuildContext context) {
     super.build(context);
     return Container(
-      child: Center(
-        child: Text('体系'),
+      padding:  EdgeInsets.only(top: MediaQuery.of(context).padding.top),
+      color: Theme.of(context).primaryColor,
+      child: AnimatedList(itemBuilder: (BuildContext context, int index, Animation animation) {
+        print('$animation');
+          return Container(
+          height: 80,
+          color: Colors.green,
+          margin: EdgeInsets.all(10),
+        );
+      },
+        initialItemCount: 10,
       ),
     );
   }

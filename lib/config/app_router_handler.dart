@@ -19,7 +19,7 @@ Handler homePageHandler = Handler(handlerFunc: (BuildContext context, Map<String
   return HomePage();
 });
 Handler uiSamplePageHandler = Handler(handlerFunc: (BuildContext context, Map<String, List<String>> parameters) {
-  return UISamplePage();
+  return UISamplePage(url: parameters['url']?.first);
 });
 Handler loginPageHandler = Handler(handlerFunc: (BuildContext context, Map<String, List<String>> parameters) {
   return LoginPage();

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:wanandroidflutter/page/home/project/HomeProjectPageModel.dart';
@@ -17,6 +18,12 @@ class _HomeProjectPageState extends State<HomeProjectPage>
   HomeProjectPageModel _homeProjectPageModel = HomeProjectPageModel();
 
   @override
+  void initState() {
+    super.initState();
+    _homeProjectPageModel.loadProjectList();
+  }
+
+  @override
   Widget build(BuildContext context) {
     super.build(context);
     return Scaffold(
@@ -28,16 +35,27 @@ class _HomeProjectPageState extends State<HomeProjectPage>
         slivers: [
           ProviderStatePageWidget<HomeProjectPageModel>(
             create: (BuildContext context) => _homeProjectPageModel,
-            loadingBuilder:
-                (BuildContext context, HomeProjectPageModel model) =>
-                    SliverToBoxAdapter(
-              child: HomeProjectPageListLoadingWidget(),
-            ),
-            child: SliverList(
-              delegate: SliverChildBuilderDelegate(
-                  (BuildContext context, int index) =>
-                      HomeProjectPageListItemWidget(),
-                  childCount: 15),
+            loadingBuilder: (BuildContext context, HomeProjectPageModel model) => HomeProjectPageListLoadingWidget(),
+            child: SliverPadding(
+              sliver: SliverGrid.count(
+                children: <Widget>[
+                  HomeProjectPageListItemWidget(),
+                  HomeProjectPageListItemWidget(),
+                  HomeProjectPageListItemWidget(),
+                  HomeProjectPageListItemWidget(),
+                  HomeProjectPageListItemWidget(),
+                  HomeProjectPageListItemWidget(),
+                  HomeProjectPageListItemWidget(),
+                  HomeProjectPageListItemWidget(),
+                  HomeProjectPageListItemWidget(),
+                  HomeProjectPageListItemWidget(),
+                ],
+                crossAxisCount: 2,
+                mainAxisSpacing: 10,
+                childAspectRatio:0.6,
+                crossAxisSpacing: 10,
+              ),
+              padding: EdgeInsets.all(10),
             ),
           ),
         ],
