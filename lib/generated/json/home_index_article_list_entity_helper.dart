@@ -1,7 +1,6 @@
 import 'package:wanandroidflutter/entity/home_index_article_list_entity.dart';
 
-homeIndexArticleListEntityFromJson(
-    HomeIndexArticleListEntity data, Map<String, dynamic> json) {
+homeIndexArticleListEntityFromJson(HomeIndexArticleListEntity data, Map<String, dynamic> json) {
   if (json['curPage'] != null) {
     data.curPage = json['curPage']?.toInt();
   }
@@ -29,8 +28,7 @@ homeIndexArticleListEntityFromJson(
   return data;
 }
 
-Map<String, dynamic> homeIndexArticleListEntityToJson(
-    HomeIndexArticleListEntity entity) {
+Map<String, dynamic> homeIndexArticleListEntityToJson(HomeIndexArticleListEntity entity) {
   final Map<String, dynamic> data = new Map<String, dynamic>();
   data['curPage'] = entity.curPage;
   if (entity.datas != null) {
@@ -44,8 +42,7 @@ Map<String, dynamic> homeIndexArticleListEntityToJson(
   return data;
 }
 
-homeIndexArticleListDataFromJson(
-    HomeIndexArticleListData data, Map<String, dynamic> json) {
+homeIndexArticleListDataFromJson(HomeIndexArticleListData data, Map<String, dynamic> json) {
   if (json['apkLink'] != null) {
     data.apkLink = json['apkLink']?.toString();
   }
@@ -145,8 +142,7 @@ homeIndexArticleListDataFromJson(
   return data;
 }
 
-Map<String, dynamic> homeIndexArticleListDataToJson(
-    HomeIndexArticleListData entity) {
+Map<String, dynamic> homeIndexArticleListDataToJson(HomeIndexArticleListData entity) {
   final Map<String, dynamic> data = new Map<String, dynamic>();
   data['apkLink'] = entity.apkLink;
   data['audit'] = entity.audit;
@@ -184,8 +180,7 @@ Map<String, dynamic> homeIndexArticleListDataToJson(
   return data;
 }
 
-homeIndexArticleListDatasTagFromJson(
-    HomeIndexArticleListDatasTag data, Map<String, dynamic> json) {
+homeIndexArticleListDatasTagFromJson(HomeIndexArticleListDatasTag data, Map<String, dynamic> json) {
   if (json['name'] != null) {
     data.name = json['name']?.toString();
   }
@@ -195,8 +190,7 @@ homeIndexArticleListDatasTagFromJson(
   return data;
 }
 
-Map<String, dynamic> homeIndexArticleListDatasTagToJson(
-    HomeIndexArticleListDatasTag entity) {
+Map<String, dynamic> homeIndexArticleListDatasTagToJson(HomeIndexArticleListDatasTag entity) {
   final Map<String, dynamic> data = new Map<String, dynamic>();
   data['name'] = entity.name;
   data['url'] = entity.url;

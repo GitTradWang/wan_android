@@ -1,7 +1,6 @@
 import 'package:wanandroidflutter/entity/home_index_banner_entity.dart';
 
-homeIndexBannerEntityFromJson(
-    HomeIndexBannerEntity data, Map<String, dynamic> json) {
+homeIndexBannerEntityFromJson(HomeIndexBannerEntity data, Map<String, dynamic> json) {
   if (json['desc'] != null) {
     data.desc = json['desc']?.toString();
   }

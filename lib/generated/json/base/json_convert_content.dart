@@ -24,17 +24,13 @@ class JsonConvert<T> {
       case UserInfoEntity:
         return userInfoEntityFromJson(data as UserInfoEntity, json) as T;
       case HomeIndexBannerEntity:
-        return homeIndexBannerEntityFromJson(
-            data as HomeIndexBannerEntity, json) as T;
+        return homeIndexBannerEntityFromJson(data as HomeIndexBannerEntity, json) as T;
       case HomeIndexArticleListEntity:
-        return homeIndexArticleListEntityFromJson(
-            data as HomeIndexArticleListEntity, json) as T;
+        return homeIndexArticleListEntityFromJson(data as HomeIndexArticleListEntity, json) as T;
       case HomeIndexArticleListData:
-        return homeIndexArticleListDataFromJson(
-            data as HomeIndexArticleListData, json) as T;
+        return homeIndexArticleListDataFromJson(data as HomeIndexArticleListData, json) as T;
       case HomeIndexArticleListDatasTag:
-        return homeIndexArticleListDatasTagFromJson(
-            data as HomeIndexArticleListDatasTag, json) as T;
+        return homeIndexArticleListDatasTagFromJson(data as HomeIndexArticleListDatasTag, json) as T;
     }
     return data as T;
   }
@@ -46,13 +42,11 @@ class JsonConvert<T> {
       case HomeIndexBannerEntity:
         return homeIndexBannerEntityToJson(data as HomeIndexBannerEntity);
       case HomeIndexArticleListEntity:
-        return homeIndexArticleListEntityToJson(
-            data as HomeIndexArticleListEntity);
+        return homeIndexArticleListEntityToJson(data as HomeIndexArticleListEntity);
       case HomeIndexArticleListData:
         return homeIndexArticleListDataToJson(data as HomeIndexArticleListData);
       case HomeIndexArticleListDatasTag:
-        return homeIndexArticleListDatasTagToJson(
-            data as HomeIndexArticleListDatasTag);
+        return homeIndexArticleListDatasTagToJson(data as HomeIndexArticleListDatasTag);
     }
     return data as T;
   }
@@ -97,8 +91,7 @@ class JsonConvert<T> {
       String itemType = type.substring(5, type.length - 1);
       List tempList = _getListFromType(itemType);
       json.forEach((itemJson) {
-        tempList
-            .add(_fromJsonSingle(type.substring(5, type.length - 1), itemJson));
+        tempList.add(_fromJsonSingle(type.substring(5, type.length - 1), itemJson));
       });
       return tempList as M;
     } else {

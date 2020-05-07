@@ -15,11 +15,9 @@ class HomeIndexPageListModel extends ProviderStatePageModel {
   Future<void> getArticleListData({bool first}) async {
     articleList.clear();
     await _getTopArticlList();
-    BaseEntity<HomeIndexArticleListEntity> entity =
-    await WanAndroidApi.get<HomeIndexArticleListEntity>('article/list/$currentPage/json');
+    BaseEntity<HomeIndexArticleListEntity> entity = await WanAndroidApi.get<HomeIndexArticleListEntity>('article/list/$currentPage/json');
     currentPage = entity.data.curPage;
-    noMoreData =
-        entity.data.curPage >= entity.data.pageCount && entity.data.over;
+    noMoreData = entity.data.curPage >= entity.data.pageCount && entity.data.over;
     articleList.addAll(entity.data.datas);
     if (first == true) {
       showContent();
@@ -30,8 +28,7 @@ class HomeIndexPageListModel extends ProviderStatePageModel {
 
   Future<void> loadMore() async {
     currentPage++;
-    BaseEntity<HomeIndexArticleListEntity> entity =
-    await WanAndroidApi.get<HomeIndexArticleListEntity>('article/list/$currentPage/json');
+    BaseEntity<HomeIndexArticleListEntity> entity = await WanAndroidApi.get<HomeIndexArticleListEntity>('article/list/$currentPage/json');
     currentPage = entity.data.curPage;
     noMoreData = entity.data.curPage >= entity.data.pageCount && entity.data.over;
     articleList.addAll(entity.data.datas);

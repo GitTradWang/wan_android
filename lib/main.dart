@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:screen_ratio_adapter/screen_ratio_adapter.dart';
 import 'package:wanandroidflutter/config/app_navigator.dart';
 import 'package:wanandroidflutter/config/app_router.dart';
@@ -35,6 +36,25 @@ class _AppState extends State<App> {
   @override
   void initState() {
     super.initState();
+
+    EasyRefresh.defaultFooter = ClassicalFooter(
+      loadedText: '加载完成',
+      noMoreText: '没有更多了',
+      loadingText: '加载中 . .',
+      loadFailedText: '加载失败',
+      infoText: '最后更新时间 %T',
+      enableInfiniteLoad: true,
+      enableHapticFeedback: false,
+    );
+    EasyRefresh.defaultHeader = ClassicalHeader(
+      refreshText: "下拉刷新",
+      refreshedText: '刷新成功',
+      refreshFailedText: '刷新失败',
+      refreshingText: '刷新中 . .',
+      refreshReadyText: '释放刷新',
+      infoText: '最后更新时间 %T',
+      enableHapticFeedback: false,
+    );
   }
 
   @override
