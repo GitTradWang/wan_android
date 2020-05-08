@@ -40,11 +40,12 @@ class LoadingDialog {
   }
 
   ///取消弹窗
-  static bool dismiss(BuildContext context) {
+  static void dismiss(BuildContext context) {
     //防止误杀页面
     if (AppNavigator.appNavigatorManager.currentIsDialog()) {
-      return Navigator.of(context).pop();
+      Navigator.of(context).pop();
+      return;
     }
-    return false;
+    return;
   }
 }
